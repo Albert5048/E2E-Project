@@ -11,4 +11,10 @@ test.describe('Backend REST API Test Suite', () => {
     expect(body.data.email).toBe('janet.weaver@reqres.in');
   });
 
+  test('GET /api/users/999 - Assert 404 Not Found', async ({ request }) => {
+    const response = await request.get('https://reqres.in/api/users/999');
+
+    expect(response.status()).toBe(404);
+  });
+
 });

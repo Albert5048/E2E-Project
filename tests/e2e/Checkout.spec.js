@@ -37,6 +37,45 @@ test.describe('E2E Order Funnel & Business Logic Validation', () => {
     await expect(checkoutPage.completeHeader).toHaveText('Thank you for your order!');
   });
 
+  test('Invalid credentials show an error and keep the user on the login page', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login('standard_user', 'wrong_password');
+
+    await expect(loginPage.errorMessage).toContainText('Username and password do not match any user in this service');
+    await expect(page).toHaveURL(/.*\/\/?$/);
+  });
+
+  test('User can add and remove an item from the cart', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const inventoryPage = new InventoryPage(page);
+
+    await loginPage.goto();
+    await loginPage.login('standard_user', 'secret_sauce');
+    await inventoryPage.addItemToCart('sauce-labs-backpack');
+
+    await expect(inventoryPage.cartBadge).toHaveText('1');
+    await inventoryPage.goToCart();
+    await page.locator('[data-test="remove-sauce-labs-backpack"]').click();
+    await expect(page.locator('.shopping_cart_badge')).toHaveCount(0);
+  });
+
+  test('User can cancel checkout and return to the inventory page', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const inventoryPage = new InventoryPage(page);
+    const checkoutPage = new CheckoutPage(page);
+
+    await loginPage.goto();
+    await loginPage.login('standard_user', 'secret_sauce');
+    await inventoryPage.addItemToCart('sauce-labs-backpack');
+    await inventoryPage.goToCart();
+    await checkoutPage.startCheckout();
+    await checkoutPage.fillShippingInformation('Alex', 'Developer', '10115');
+    await page.locator('[data-test="cancel"]').click();
+
+    await expect(page).toHaveURL(/.*inventory.html/);
+  });
+
   test('Negative Validation: Locked-out user gets blocked', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
