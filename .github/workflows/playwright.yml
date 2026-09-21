@@ -6,19 +6,11 @@ on:
   pull_request:
     branches: [ main, master, E2E ]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
+    
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
@@ -41,17 +33,10 @@ jobs:
     - name: Generate Allure HTML Report
       run: npx allure generate allure-results --clean --single-file -o allure-report
 
-    - name: Setup GitHub Pages
-      if: github.event_name == 'push'
-      uses: actions/configure-pages@v5
-
-    - name: Upload GitHub Pages artifact
-      if: github.event_name == 'push'
-      uses: actions/upload-pages-artifact@v3
+    - name: Upload Allure HTML Report Artifact
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
       with:
-        path: allure-report
-
-    - name: Deploy to GitHub Pages
-      if: github.event_name == 'push'
-      id: deployment
-      uses: actions/deploy-pages@v4
+        name: allure-report-html
+        path: allure-report/index.html   
+        retention-days: 30
