@@ -30,7 +30,6 @@ The goal was to build a practical test project that exercises a user journey fro
 - JavaScript
 - Playwright
 - Allure reporting
-- HTML report generation
 
 ## Project structure
 
@@ -85,12 +84,6 @@ Run only the API tests:
 npx playwright test tests/api/users-api.spec.js
 ```
 
-Run with browser UI visible:
-
-```bash
-npx playwright test --headed
-```
-
 ## Reports
 
 After running the tests, the HTML report can be opened with:
@@ -125,9 +118,6 @@ It performs the following steps:
 
 This gives the project a cleaner CI setup and makes it easier to demonstrate automation in a real development workflow.
 
-## Important note
-
-A few scenarios were intentionally added to strengthen the project from a portfolio perspective. The suite is meant to reflect how a real QA automation project is usually structured: covering the core journey, the edge cases, and the validation points that matter most.
 
 ## Future improvements
 
