@@ -47,8 +47,7 @@ E2E/
 ├── package.json
 ├── playwright.config.js
 ├── README.md
-└── playwright-report/
-```
+
 
 ## Setup
 
