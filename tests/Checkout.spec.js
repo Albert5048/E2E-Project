@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage.js';
-import { InventoryPage } from '../../pages/InventoryPage.js';
-import { CheckoutPage } from '../../pages/CheckoutPage.js';
+import { LoginPage } from '../pages/LoginPage.js';
+import { InventoryPage } from '../pages/InventoryPage.js';
+import { CheckoutPage } from '../pages/CheckoutPage.js';
 
 test.describe('E2E Order Funnel & Business Logic Validation', () => {
 
