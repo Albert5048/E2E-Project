@@ -14,41 +14,7 @@ The suite covers successful and unsuccessful user flows, including checkout pric
 
 ## Getting started
 
-<<<<<<< HEAD
-### API checks
-- GET request to a public API endpoint
-- Validate successful response structure
-- Validate 404 handling for a missing resource
-
-## Tech stack
-- JavaScript
-- Playwright
-- Allure reporting
-
-## Project structure
-
-```text
-E2E/
-├── pages/
-│   ├── LoginPage.js
-│   ├── InventoryPage.js
-│   └── CheckoutPage.js
-├── tests/
-│   ├── api/
-│   │   └── users-api.spec.js
-│   └── e2e/
-│       └── Checkout.spec.js
-├── package.json
-├── playwright.config.js
-├── README.md
-
-
-## Setup
-
-Install dependencies:
-=======
 You'll need Node.js. Clone the repository and install the project dependencies and Playwright browsers:
->>>>>>> E2E
 
 ```bash
 git clone https://github.com/Albert5048/SauceDemo.git
@@ -63,18 +29,6 @@ Run the complete suite:
 npx playwright test
 ```
 
-<<<<<<< HEAD
-Run only the E2E tests:
-
-```bash
-npx playwright test tests/e2e/Checkout.spec.js
-```
-
-Run only the API tests:
-
-```bash
-npx playwright test tests/api/users-api.spec.js
-=======
 To see the browser while tests are running:
 
 ```bash
@@ -85,7 +39,6 @@ To run the checkout tests directly:
 
 ```bash
 npx playwright test tests/Checkout.spec.js
->>>>>>> E2E
 ```
 
 ## Reports
@@ -104,30 +57,6 @@ The workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.
 
 ## Project layout
 
-<<<<<<< HEAD
-I also set up a GitHub Actions workflow that runs the automatic test suite on push and pull request events. The workflow is defined in [.github/workflows/playwright.yml](.github/workflows/playwright.yml).
-
-It performs the following steps:
-- checks out the repository
-- installs Node.js
-- installs project dependencies
-- installs Playwright browsers
-- runs the Playwright tests
-- generates an Allure HTML report
-- uploads the report as a workflow artifact
-
-This gives the project a cleaner CI setup and makes it easier to demonstrate automation in a real development workflow.
-
-
-## Future improvements
-
-Possible next steps for this project include:
-- adding more checkout validation cases
-- expanding product filtering and sorting checks
-- adding logout flow coverage
-- creating a clearer test naming strategy as the suite grows
-- adding CI execution with GitHub Actions
-=======
 ```text
 SauceDemo/
 ├── pages/
@@ -142,5 +71,4 @@ SauceDemo/
 ├── playwright.config.js
 └── README.md
 ```
->>>>>>> E2E
 
